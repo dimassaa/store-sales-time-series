@@ -204,10 +204,11 @@ turn a descriptive analysis into a modeling exercise (see
 Cleaning: nothing is dropped. Data integrity is asserted before analysis
 (no duplicate `(date, store_nbr, family)` rows, no missing values, no
 negative sales, no gaps in the daily calendar). The four Christmas closure
-days are genuinely zero-filled in the source; they are kept as zeros for the
-STL stages and replaced by neighbour means **only** for the
-additive-vs-multiplicative comparison, with the adjusted rows printed in
-notebook 04 so the policy is auditable.
+days are absent from the source data and zero-filled by the pipeline
+(`daily_network_sales`, full-calendar index — a documented, auditable
+policy); they are kept as zeros for the STL stages and replaced by
+neighbour means **only** for the additive-vs-multiplicative comparison,
+with the adjusted rows printed in notebook 04 so the policy is auditable.
 
 ## Exploratory Data Analysis
 
@@ -281,8 +282,8 @@ scale-free residual metric on both branches). Decision rule (documented in
 | Seasonality strength F_s | 0.570 (network) | notebook 04 |
 | National holidays at top-15 residual days | 14 of 15 | notebook 04 |
 | Largest holiday effects | Navidad 2016 −1,321,021; New Year +1,262,485 (2017-01-01) | notebook 04 |
-| Store 44 (type A, heavy) | F_s 0.633, F_t 0.711 | notebook 03 / 04 |
-| Store 26 (type D/E, small) | F_s 0.171, F_t 0.306 (weak weekly seasonality) | notebook 03 / 04 |
+| Store 44 (type A, heavy) | F_s 0.633, F_t 0.711 | notebook 03 |
+| Store 26 (type D/E, small) | F_s 0.171, F_t 0.306 (weak weekly seasonality) | notebook 03 |
 | Model choice | multiplicative, but by only 0.94% (RRS 0.1311 vs 0.1323) — near-tie | notebook 04 §4 |
 
 ![Mean network sales by day of week — the evidence for period=7](assets/eda_weekday_profile.png)
