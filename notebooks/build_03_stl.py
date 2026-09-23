@@ -72,8 +72,9 @@ CONCLUSION = (
     "multiplicative branch is **0.94%** lower. By the documented rule\n"
     "(smaller resid_relative_std wins; strengths are not cross-comparable\n"
     "across log/original space) the choice is **multiplicative**, but the\n"
-    "scientific statement is that the two models are **statistically almost\n"
-    "tied**: the level-proportional component the multiplicative proxy absorbs\n"
+    "sober reading is that the two models are **almost tied on this series\n"
+    "(0.94% gap in relative residual spread)**: no test was run on that gap,\n"
+    "and the level-proportional component the multiplicative proxy absorbs\n"
     "is real yet tiny, so either view tells the same story for a monthly\n"
     "report. We record multiplicative as the pick and flag the margin rather\n"
     "than overselling it.\n\n"
@@ -407,6 +408,21 @@ CELLS: list[dict[str, str]] = [
             "fig.savefig('../assets/seasonal_peaks_holidays.png', dpi=150,\n"
             "            bbox_inches='tight')\n"
             "plt.show()"
+        ),
+    },
+    {
+        "type": "markdown",
+        "source": (
+            "**Where the holiday lines sit, and why not on the seasonal band.**\n"
+            "The figure above draws the red/gray holiday lines over the **raw-sales\n"
+            "panel** (level context) and the **STL residual panel** \u2014 the four-panel\n"
+            "STL figures above reserve their *seasonal* band for the weekly period-7\n"
+            "pattern, which cannot move for a single calendar date. National\n"
+            "holidays are one-off events, so additively they separate into the\n"
+            "**residual**: 14 of the top 15 largest |resid| days are exactly a\n"
+            "national-holiday date (printed by the executed table cell above). The\n"
+            "holiday spikes are exactly the red-dated residual bursts; the gray\n"
+            "lines are all other national holidays in range."
         ),
     },
     {
