@@ -80,9 +80,9 @@ CELLS: list[dict[str, str]] = [
         "source": (
             "%matplotlib inline\n"
             + _ANCHOR
-            + "import numpy as np\n"
-            "import pandas as pd\n"
+            + "import pandas as pd\n"
             "import matplotlib.pyplot as plt\n"
+            "from IPython.display import display\n"
             "plt.style.use('seaborn-v0_8-whitegrid')\n"
             "pd.set_option('display.float_format', lambda v: f'{v:,.0f}')\n"
             "from src.eda import load_train, daily_network_sales\n"
@@ -133,10 +133,10 @@ CELLS: list[dict[str, str]] = [
             "        'mean': float(s.mean()),\n"
             "        'last value': float(s.iloc[-1]),\n"
             "    }\n"
-            "pd.DataFrame(summary).T\n"
             "\n"
             "amp = {k: v['weekday amplitude'] for k, v in summary.items()}\n"
             "vlt = {k: v['day-to-day std'] for k, v in summary.items()}\n"
+            "display(pd.DataFrame(summary).T)\n"
             "print('weekday amplitude (raw %.0f | MA7 %.0f | MA14 %.0f | MA30 %.0f)'\n"
             "      % (amp['raw'], amp['MA7'], amp['MA14'], amp['MA30']))\n"
             "print('day-to-day std    (raw %.0f | MA7 %.0f | MA14 %.0f | MA30 %.0f)'\n"
