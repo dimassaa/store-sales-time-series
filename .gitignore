@@ -1,0 +1,25 @@
+# AGENTS.md is a private instruction file for the AI assistant — never commit it.
+AGENTS.md
+
+# The Ultimate README Guide.md is a private study reference — never commit it.
+The Ultimate README Guide.md
+
+# Python virtual environment
+.venv/
+
+# Notebook cruft
+.ipynb_checkpoints/
+
+# Local bytecode and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.coverage.*
+
+# Editable-install metadata
+*.egg-info/
+
+# Raw datasets are large Kaggle downloads (train.csv is ~122 MB); keep the
+# repo lean, sources are documented in data/README.md
+data/*.csv
