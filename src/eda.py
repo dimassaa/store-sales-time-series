@@ -110,9 +110,9 @@ def _on_full_calendar(daily: pd.Series, start: pd.Timestamp, end: pd.Timestamp) 
     """Reindex an observed-daily series onto every calendar day in [start, end].
 
     Days without rows (Christmas closures 2013-2016 in this dataset) become 0:
-    an absent row means zero recorded sales — corroborated by transactions
-    being empty on those dates — and downstream MA/STL reject irregular
-    indices, while NaN would poison every rolling window around the gap.
+    an absent row means zero recorded sales for that day, and downstream
+    MA/STL reject irregular indices, while NaN would poison every rolling
+    window around the gap.
     """
     full_calendar = pd.date_range(start, end, freq="D")
     filled = daily.reindex(full_calendar, fill_value=0)
