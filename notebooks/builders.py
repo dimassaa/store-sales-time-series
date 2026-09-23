@@ -34,7 +34,15 @@ def _make_deterministic(nb: nbformat.NotebookNode) -> None:
             cell.metadata.pop("execution", None)
             for output in cell.outputs:
                 # nbclient stamps per-output iopub timestamps in some configs.
-                output.pop("metadata", None)
+                # nbformat's schema is split: display_data/execute_result
+                # REQUIRE a metadata key (nbconvert validates it), while
+                # stream/error forbid one (additionalProperties: false).
+                # Replace the transient stamp where required; delete it where
+                # schema-invalid — never leave nbclient's timestamps around.
+                if output.output_type in ("display_data", "execute_result"):
+                    output["metadata"] = {}
+                elif "metadata" in output:
+                    del output["metadata"]
 
 
 def build(cells: list[dict[str, str]], notebook_name: str, execute: bool = True) -> Path:
