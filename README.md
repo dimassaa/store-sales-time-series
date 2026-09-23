@@ -305,8 +305,8 @@ honestly as a fact without a causal story rather than inventing one.
 **Verdict.** The network grew strongly from 2013 through late 2016 and eased
 into 2017; sales keep a stable weekly rhythm peaking on Sunday; the calendar
 outliers are national holidays (14 of the 15 largest residual days), led by
-the Christmas closures and New Year bursts. This verdict lives in identical
-wording in notebook 04 and `reports/04_executive_summary.html`; it is
+the Christmas closures and New Year bursts. The full verdict is quoted
+verbatim in notebook 04 and `reports/04_executive_summary.html`; it is
 descriptive and exploratory, and it does not forecast or claim significance.
 
 ## Learning Resources
