@@ -125,7 +125,7 @@ Corporación Favorita: проверка целостности данных, с�
 **Вариант A: uv (рекомендуется)**
 
 ```bash
-git clone https://github.com/<your-user>/store-sales-time-series.git
+git clone https://github.com/dimassaa/store-sales-time-series.git
 cd store-sales-time-series
 uv venv .venv
 uv pip install --python .venv/bin/python -r requirements.txt
@@ -135,7 +135,7 @@ uv pip install --python .venv/bin/python -r requirements.txt
 **Вариант B: классический venv + pip**
 
 ```bash
-git clone https://github.com/<your-user>/store-sales-time-series.git
+git clone https://github.com/dimassaa/store-sales-time-series.git
 cd store-sales-time-series
 python3 -m venv .venv
 source .venv/bin/activate

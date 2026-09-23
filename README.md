@@ -120,7 +120,7 @@ up the environment by either option below.
 **Option A: uv (recommended)**
 
 ```bash
-git clone https://github.com/<your-user>/store-sales-time-series.git
+git clone https://github.com/dimassaa/store-sales-time-series.git
 cd store-sales-time-series
 uv venv .venv
 uv pip install --python .venv/bin/python -r requirements.txt
@@ -130,7 +130,7 @@ uv pip install --python .venv/bin/python -r requirements.txt
 **Option B: classic venv + pip**
 
 ```bash
-git clone https://github.com/<your-user>/store-sales-time-series.git
+git clone https://github.com/dimassaa/store-sales-time-series.git
 cd store-sales-time-series
 python3 -m venv .venv
 source .venv/bin/activate
