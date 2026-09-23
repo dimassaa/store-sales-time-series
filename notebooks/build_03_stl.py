@@ -28,9 +28,9 @@ _ANCHOR = (
 # All figures below come from the pass-A printed outputs of cells 3/6/7/9/12/14.
 CONCLUSION = (
     "## 8. Conclusion\n\n"
-    "All numbers below are the pass-A executed outputs of this notebook\n"
-    "(\u00a7Trend \u2192 cells 3-4, \u00a7Stores \u2192 cells 6-7, \u00a7Holidays \u2192 cell 9,\n"
-    "\u00a7Strengths \u2192 cell 12, \u00a7Model \u2192 cell 14).\n\n"
+    "All numbers below are executed outputs printed by the cells above\n"
+    "(\u00a7network, \u00a7stores, \u00a7holidays, \u00a7strengths, \u00a7model \u2014 nothing here is\n"
+    "written without a matching printed value).\n\n"
     "**1. The weekly seasonal peak is Sunday.** The STL seasonal band of the\n"
     "network series swings from **\u2212241,757 to +376,388** units over the\n"
     "week; mean seasonal by weekday peaks on **Sunday (+215,863)** and bottoms\n"
@@ -228,6 +228,30 @@ CELLS: list[dict[str, str]] = [
         ),
     },
     {
+        "type": "code",
+        "source": (
+            "# Milestones the written conclusions cite, all computed here:\n"
+            "# the weekly seasonal peak day, the per-year trend levels, and the\n"
+            "# end-2016 vs 2017 trend reading (peak then easing).\n"
+            "seasonal_dow = comp_net['seasonal'].groupby(comp_net.index.dayofweek).mean()\n"
+            "weekday_names = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']\n"
+            "for k in range(7):\n"
+            "    print(f'{weekday_names[k]}: seasonal {seasonal_dow[k]:,.0f}')\n"
+            "peak_dow = int(seasonal_dow.idxmax())\n"
+            "trough_dow = int(seasonal_dow.idxmin())\n"
+            "print(f'peak weekday: {weekday_names[peak_dow]} '\n"
+            "      f'({seasonal_dow[peak_dow]:,.0f}) | trough: '\n"
+            "      f'{weekday_names[trough_dow]} ({seasonal_dow[trough_dow]:,.0f})')\n"
+            "tr = comp_net['trend']\n"
+            "print('trend yearly mean:')\n"
+            "print(tr.groupby(tr.index.year).mean().round(0).to_string())\n"
+            "print(f'trend max {tr.idxmax().date()} ({tr.max():,.0f}) | '\n"
+            "      f'trend last {tr.iloc[-1]:,.0f}')\n"
+            "print(f'trend monthly mean 2016-12: {tr[\"2016-12\"].mean():,.0f}')\n"
+            "print(f'trend mean 2017: {tr[\"2017\":].mean():,.0f}')"
+        ),
+    },
+    {
         "type": "markdown",
         "source": (
             "## 3. STL on the two pre-registered stores\n\n"
@@ -250,6 +274,8 @@ CELLS: list[dict[str, str]] = [
             "      f'min {tr_a.min():,.0f} | max {tr_a.max():,.0f}')\n"
             "print(f'  resid std {comp_a[\"resid\"].std():,.0f} | '\n"
             "      f'max |resid| {comp_a[\"resid\"].abs().max():,.0f}')\n"
+            "print('  trend yearly mean: ' + ', '.join(\n"
+            "    f'{y}: {v:,.0f}' for y, v in tr_a.groupby(tr_a.index.year).mean().items()))\n"
             "fig, axes = plt.subplots(4, 1, figsize=(11, 9.5), sharex=True)\n"
             "axes[0].plot(s_a.index, s_a.values, lw=0.6, color='0.78', label='observed')\n"
             "axes[0].plot(comp_a.index, comp_a['trend'].values, lw=1.5,\n"
@@ -280,6 +306,8 @@ CELLS: list[dict[str, str]] = [
             "      f'min {tr_m.min():,.0f} | max {tr_m.max():,.0f}')\n"
             "print(f'  resid std {comp_m[\"resid\"].std():,.0f} | '\n"
             "      f'max |resid| {comp_m[\"resid\"].abs().max():,.0f}')\n"
+            "print('  trend yearly mean: ' + ', '.join(\n"
+            "    f'{y}: {v:,.0f}' for y, v in tr_m.groupby(tr_m.index.year).mean().items()))\n"
             "fig, axes = plt.subplots(4, 1, figsize=(11, 9.5), sharex=True)\n"
             "axes[0].plot(s_m.index, s_m.values, lw=0.6, color='0.78', label='observed')\n"
             "axes[0].plot(comp_m.index, comp_m['trend'].values, lw=1.5,\n"
